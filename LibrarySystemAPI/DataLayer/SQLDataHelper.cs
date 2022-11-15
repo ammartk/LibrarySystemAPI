@@ -280,7 +280,65 @@ namespace SampleProject.DataLayer
                 
         }
 
+        public string DeleteBook(string bookname)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                book book = new book();
+                string msg = "";
+                if (book != null)
+                {
+                    SqlCommand cmd = new SqlCommand("deletebook", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("@bookname", bookname);
+
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (i > 0)
+                    {
+                        msg = "book is deleted";
+                    }
+                    else
+                    {
+                        msg = "book is not deleted";
+                    }
+                }
+                return msg;
+            }
+               
+        }
+        public string DeleteUser(int id)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                user user = new user();
+                string msg = "";
+                if (user != null)
+                {
+                    SqlCommand cmd = new SqlCommand("deleteusers", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                   cmd.Parameters.AddWithValue("@userid",id);
+
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (i > 0)
+                    {
+                        msg = "user is deleted";
+                    }
+                    else
+                    {
+                        msg = "user is not deleted";
+                    }
+                }
+                return msg;
+            }
+
+        }
 
 
 
