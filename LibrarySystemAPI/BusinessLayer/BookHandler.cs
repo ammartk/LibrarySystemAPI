@@ -2,6 +2,7 @@
 using System.Data;
 using WebApplication16.Models;
 using SampleProject.DataLayer;
+using System;
 
 namespace SampleProject.BusinessLayer
 {
@@ -15,7 +16,7 @@ namespace SampleProject.BusinessLayer
 
         public bool DeleteBook(string name)
         {
-            throw new System.NotImplementedException();
+            return DatabaseHandler.DeleteBook(name);
         }
 
         public book GetBook(string name)
@@ -29,7 +30,27 @@ namespace SampleProject.BusinessLayer
         }
 
 
-        public bool IssueBook(string username, string bookname)
+        public issuebookclass IssueBook(int userid, string bookname)
+        {
+            book book = GetBook(bookname);
+            user user = DatabaseHandler.GetUser(userid);
+            if(book.availibilty == -1)
+            {
+                var value = new issuebookclass() { Username = user.username, Bookname = book.bookname, IssueDate = DateTime.Today, ReturnDate = DateTime.Today.AddDays(15)}
+                 if (DatabaseHandler.IssueBook(value))
+                 {
+                    return value;
+                 }
+                 else
+                 {
+                    return null;
+                 }
+                
+            }
+            return null;
+        }
+
+        public bool ReturnBook(string name)
         {
             throw new System.NotImplementedException();
         }

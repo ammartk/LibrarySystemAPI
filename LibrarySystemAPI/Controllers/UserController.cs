@@ -41,11 +41,11 @@ namespace LibrarySystemAPI.Controllers
             }
             return BadRequest();
         }
-        [HttpPost("{username}/{bookname}")]
-        public ActionResult IssueBook(string username, string bookname)
+        [HttpPost("{userid}/{bookname}")]
+        public ActionResult IssueBook(int userid, string bookname)
         {
-            var issue = bookHandler.IssueBook(username, bookname);
-            if(issue != null)
+            var issue = bookHandler.IssueBook(userid, bookname);
+            if (issue != null)
             {
                 return Created(nameof(GetUser), issue);
             }

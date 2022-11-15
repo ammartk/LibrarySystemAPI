@@ -7,7 +7,9 @@ namespace WebApplication16.Models
 {
     public class issuebookclass
     {
-        public List<string> issuebook { get; set; }
-        
+        public string Username { get; set; }
+        public string Bookname { get; set; }
+        public DateTime IssueDate { get; set; }
+        public DateTime ReturnDate { get; set; }
     }
 }

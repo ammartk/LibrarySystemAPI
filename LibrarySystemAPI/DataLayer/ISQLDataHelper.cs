@@ -18,7 +18,8 @@ namespace SampleProject.DataLayer
 
         public user GetUser(int id);
         public List<book> GetIssuedBooks(string name);
-
+        public bool IssueBook(issuebookclass issue);
         public bool DeleteUser(int id);
+        public bool DeleteBook(string name);
     }
 }
