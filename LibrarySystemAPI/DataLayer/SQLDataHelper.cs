@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -49,7 +50,7 @@ namespace SampleProject.DataLayer
                     return null;
                 }
             }
-                
+
         }
 
         public List<Country> GetCountriesData()
@@ -158,5 +159,129 @@ namespace SampleProject.DataLayer
             }
             return false;
         }
+        public user GetUser(int id)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                SqlDataAdapter d = new SqlDataAdapter("fetchusername", con);
+                d.SelectCommand.CommandType = CommandType.StoredProcedure;
+                d.SelectCommand.Parameters.AddWithValue("@userid", id);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                user user1 = new user();
+                if (dt.Rows.Count > 0)
+                {
+                    user1.username = dt.Rows[0]["username"].ToString();
+                    user1.userid = Convert.ToInt32(dt.Rows[0]["userid"].ToString());
+                    user1.issuelist = dt.Rows[0]["issuelist"].ToString();
+                }
+                if (user1 != null)
+                {
+                    return user1;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public IEnumerable<book> GetIsuedBooks(string name)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                SqlDataAdapter d = new SqlDataAdapter("Fetchbooks", con);
+                d.SelectCommand.CommandType = CommandType.StoredProcedure;
+                d.SelectCommand.Parameters.AddWithValue("@name", name);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                List<book> books = new List<book>();
+                foreach (DataRow i in dt.Rows)
+                {
+                    book boook = new book();
+                    boook.bookname = i["bookname"].ToString();
+                    boook.bookid = Convert.ToInt32(i["bookid"].ToString());
+                    boook.category = i["category"].ToString();
+                    boook.shelf = Convert.ToInt32(i["shelf"].ToString());
+                    boook.availibilty = Convert.ToInt32(i["availibilty"].ToString());
+                    books.Add(boook);
+
+                }
+                return books;
+            }
+
+        }
+
+        public string PutUser(int userid)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                user user = new user();
+                string msg = "";
+                if (user != null)
+                {
+                    SqlCommand cmd = new SqlCommand("updateuser", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@userid", user.userid);
+                    cmd.Parameters.AddWithValue("@username", user.username);
+
+                    cmd.Parameters.AddWithValue("@issuelist", user.issuelist);
+
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (i > 0)
+                    {
+                        msg = "user has been updated";
+                    }
+                    else
+                    {
+                        msg = "user has not beenupdated";
+                    }
+                }
+                return msg;
+            }
+        
+        }
+
+        public string PutBook(int bookid)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                string msg = "";
+                book bookk = new book();
+                if (bookk != null)
+                {
+                    SqlCommand cmd = new SqlCommand("updatebook", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@bookname", bookk.bookname);
+                    cmd.Parameters.AddWithValue("@bookid", bookid);
+                    cmd.Parameters.AddWithValue("@category", bookk.category);
+                    cmd.Parameters.AddWithValue("@shelf", bookk.shelf);
+                    cmd.Parameters.AddWithValue("@avail", bookk.availibilty);
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (i > 0)
+                    {
+                        msg = "bookdata has been updated";
+                    }
+                    else
+                    {
+                        msg = "bookdata has not beenupdated";
+                    }
+
+                }
+                return msg;
+            }
+                
+        }
+
+
+
     }
 }
