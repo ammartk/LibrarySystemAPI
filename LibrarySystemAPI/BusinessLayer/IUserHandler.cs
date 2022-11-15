@@ -4,9 +4,8 @@ namespace LibrarySystemAPI.BusinessLayer
 {
     public interface IUserHandler
     {
-        public bool InsertUser(user book);
-        public user GetUser(string name);
-
+        public bool InsertUser(user user);
+        public UserDTO GetUser(string name);
         public bool UpdateUser(int id);
        
     }
