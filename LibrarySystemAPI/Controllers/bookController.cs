@@ -57,9 +57,9 @@ namespace WebApplication16.Controllers
         //   question3
 
         [HttpGet("{name}")]
-        public ActionResult<book> GetWithName(string booknamee)
+        public ActionResult<book> GetWithName(string name)
         {
-            var book = bookHandler.GetBook(booknamee);
+            var book = bookHandler.GetBook(name);
             if(book != null)
             {
                 return Ok(book);
