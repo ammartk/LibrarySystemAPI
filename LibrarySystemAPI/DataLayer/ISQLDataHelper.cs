@@ -16,7 +16,9 @@ namespace SampleProject.DataLayer
         public book GetBook(string name);
         public bool InsertUser(user user);
 
-        public user GetUser(string name);
-        public IEnumerable<book> GetIssuedBooks(string name);
+        public user GetUser(int id);
+        public List<book> GetIssuedBooks(string name);
+
+        public bool DeleteUser(int id);
     }
 }

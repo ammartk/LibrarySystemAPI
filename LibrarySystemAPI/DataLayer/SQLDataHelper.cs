@@ -174,7 +174,6 @@ namespace SampleProject.DataLayer
                 {
                     user1.username = dt.Rows[0]["username"].ToString();
                     user1.userid = Convert.ToInt32(dt.Rows[0]["userid"].ToString());
-                    user1.issuelist = dt.Rows[0]["issuelist"].ToString();
                 }
                 if (user1 != null)
                 {
@@ -187,7 +186,7 @@ namespace SampleProject.DataLayer
             }
         }
 
-        public IEnumerable<book> GetIsuedBooks(string name)
+        public List<book> GetIsuedBooks(string name)
         {
             connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
             using (SqlConnection con = new SqlConnection(Constants.connectionString))

@@ -72,39 +72,39 @@ namespace WebApplication16.Controllers
         [HttpPost]
         public ActionResult Post(book bookk)
         {
-            bookHandler.InsertBook(bookk);
-            if (true)
+            
+            if (bookHandler.InsertBook(bookk))
             {
                 return Created(nameof(Post), bookk);
             }
             return BadRequest();
         }
-
-        //public string Put(int id)
-        //{
-        //    string msg = "";
-        //    if (bookk != null)
-        //    {
-        //        SqlCommand cmd = new SqlCommand("updatebook", con);
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@bookname", bookk.bookname);
-        //        cmd.Parameters.AddWithValue("@bookid",id);
-        //        cmd.Parameters.AddWithValue("@category", bookk.category);
-        //        cmd.Parameters.AddWithValue("@shelf", bookk.shelf);
-        //        cmd.Parameters.AddWithValue("@avail", bookk.availibilty);
-        //        con.Open();
-        //        int i = cmd.ExecuteNonQuery();
-        //        con.Close();
-        //        if (i > 0)
-        //        {
-        //            msg = "data has been updated";
-        //        }
-        //        else
-        //        {
-        //            msg = "data has not beenupdated";
-        //        }
-        //    }
-        //    return msg;
-        //}
+        [HttpPut("{id}")]
+        public ActionResult UpdateBook(book book, int id)
+        {
+            if(bookHandler.UpdateBook(id, book))
+            {
+                return Created(nameof(GetWithName), book);
+            }
+            return BadRequest();
+        }
+        [HttpDelete("{name}")]
+        public ActionResult DeleteBook(string name)
+        {
+            if (bookHandler.DeleteBook(name))
+            {
+                return NoContent();
+            }
+            return NotFound();
+        }
+        [HttpPut("return/{name}")]
+        public ActionResult ReturnBook(string name)
+        {
+            if (bookHandler.ReturnBook(name))
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

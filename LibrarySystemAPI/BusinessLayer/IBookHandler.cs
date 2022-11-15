@@ -11,7 +11,10 @@ namespace SampleProject.BusinessLayer
         public bool InsertBook(book book);
         public book GetBook(string name);
 
-        public bool UpdateBook(int id);
-        public bool IssueBook(book issue);
+        public bool UpdateBook(int id, book book);
+        public bool IssueBook(string username, string bookname);
+        public bool DeleteBook(string name);
+
+        public bool ReturnBook(string name);
     }
 }

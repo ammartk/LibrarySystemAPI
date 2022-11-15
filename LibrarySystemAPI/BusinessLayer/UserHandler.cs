@@ -1,4 +1,6 @@
 ﻿using SampleProject.DataLayer;
+using System.Collections.Generic;
+using System.Linq;
 using WebApplication16.Models;
 
 namespace LibrarySystemAPI.BusinessLayer
@@ -10,9 +12,11 @@ namespace LibrarySystemAPI.BusinessLayer
         {
             DatabaseHandler = sqldatahelper;
         }
-        public user GetUser(string name)
+        public user GetUser(int id)
         {
-            throw new System.NotImplementedException();
+            var user = DatabaseHandler.GetUser(id);
+            user.issuelist = DatabaseHandler.GetIssuedBooks(id).ToList();
+            return user;
         }
 
         public bool InsertUser(user user)

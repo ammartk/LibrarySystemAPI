@@ -13,6 +13,11 @@ namespace SampleProject.BusinessLayer
             DatabaseHandler = databaseHandler;
         }
 
+        public bool DeleteBook(string name)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public book GetBook(string name)
         {
             return DatabaseHandler.GetBook(name);
@@ -23,12 +28,13 @@ namespace SampleProject.BusinessLayer
             return DatabaseHandler.InsertBook(book);
         }
 
-        public bool IssueBook(book issue)
+
+        public bool IssueBook(string username, string bookname)
         {
             throw new System.NotImplementedException();
         }
 
-        public bool UpdateBook(int id)
+        public bool UpdateBook(int id, book book)
         {
             throw new System.NotImplementedException();
         }
