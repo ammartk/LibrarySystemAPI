@@ -12,10 +12,25 @@ namespace LibrarySystemAPI.BusinessLayer
         {
             DatabaseHandler = sqldatahelper;
         }
+
+        public bool DeleteUser(int id)
+        {
+            var user = GetUser(id);
+            if(user.issuelist.Count == 0)
+            {
+                DatabaseHandler.DeleteUser(id);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public user GetUser(int id)
         {
             var user = DatabaseHandler.GetUser(id);
-            user.issuelist = DatabaseHandler.GetIssuedBooks(id).ToList();
+            user.issuelist = DatabaseHandler.GetIssuedBooks(user.username).ToList();
             return user;
         }
 
@@ -24,9 +39,9 @@ namespace LibrarySystemAPI.BusinessLayer
             return DatabaseHandler.InsertUser(user);
         }
 
-        public bool UpdateUser(int id)
+        public bool UpdateUser(int id, user user)
         {
-            throw new System.NotImplementedException();
+            return DatabaseHandler.UpdateUser(id, user);
         }
     }
 }

@@ -33,10 +33,9 @@ namespace SampleProject.BusinessLayer
         public issuebookclass IssueBook(int userid, string bookname)
         {
             book book = GetBook(bookname);
-            user user = DatabaseHandler.GetUser(userid);
             if(book.availibilty == -1)
             {
-                var value = new issuebookclass() { Username = user.username, Bookname = book.bookname, IssueDate = DateTime.Today, ReturnDate = DateTime.Today.AddDays(15)}
+                var value = new issuebookclass() { UserId = userid, Bookname = book.bookname, IssueDate = DateTime.Today, ReturnDate = DateTime.Today.AddDays(15) };
                  if (DatabaseHandler.IssueBook(value))
                  {
                     return value;
@@ -57,7 +56,7 @@ namespace SampleProject.BusinessLayer
 
         public bool UpdateBook(int id, book book)
         {
-            throw new System.NotImplementedException();
+            return DatabaseHandler.UpdateBook(id, book);
         }
     }
 }

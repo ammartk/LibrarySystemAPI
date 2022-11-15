@@ -24,7 +24,7 @@ drop procedure issue;
 create procedure issue
 (
 @userid int,
-@bookname int,
+@bookname varchar(255),
 @issuedate date,
 @returndate date
 )

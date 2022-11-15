@@ -7,10 +7,7 @@ namespace LibrarySystemAPI.BusinessLayer
         public bool InsertUser(user user);
         public user GetUser(int id);
         public bool UpdateUser(int id, user user);
-       
-        public bool DeleteUser(int id)
-        {
 
-        }
+        public bool DeleteUser(int id);
     }
 }
