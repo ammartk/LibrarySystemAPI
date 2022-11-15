@@ -14,5 +14,6 @@ namespace SampleProject.DataLayer
 
         public bool InsertBook(book book);
         public book GetBook(string name);
+        public bool InsertUser(user user);
     }
 }

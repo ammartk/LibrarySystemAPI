@@ -127,5 +127,35 @@ namespace SampleProject.DataLayer
                 return false;
             }
         }
+
+        public bool InsertUser(user user)
+        {
+            connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+                if (user != null)
+                {
+                    SqlCommand cmd = new SqlCommand("listofusers", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@username", user.username);
+                    cmd.Parameters.AddWithValue("@userid", user.userid);
+                    cmd.Parameters.AddWithValue("@issuelist", user.issuelist);
+
+                    con.Open();
+                    var i = cmd.ExecuteNonQuery();
+                    con.Close();
+                    if (i > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
     }
 }
