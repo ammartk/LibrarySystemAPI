@@ -52,7 +52,7 @@ namespace LibrarySystemAPI.Controllers
             return BadRequest();
         }
         [HttpDelete("{id}")]
-        public ActionResult DeleteBook(int id)
+        public ActionResult DeleteUser(int id)
         {
             if (userHandler.DeleteUser(id))
             {
