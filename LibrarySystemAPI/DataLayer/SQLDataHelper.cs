@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
+using System.Security.Policy;
+using System.Xml.Linq;
 using LibrarySystemAPI;
 using Microsoft.Extensions.Configuration;
 using SampleProject.Models;
@@ -379,5 +382,31 @@ namespace SampleProject.DataLayer
 
             }
         }
+
+        public List<issuebookclass> IssuedLists(int id)
+        {
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
+            {
+                SqlDataAdapter d = new SqlDataAdapter("getissuedlist", con);
+                d.SelectCommand.CommandType = CommandType.StoredProcedure;
+                d.SelectCommand.Parameters.AddWithValue("@userid", id);
+                DataTable dt = new DataTable();
+                d.Fill(dt);
+                List<issuebookclass> books = new List<book>();
+                foreach (DataRow i in dt.Rows)
+                {
+                    issuebookclass boook = new book();
+                    boook.Bookname = i["bookname"].ToString();
+                    boook.UserId = Convert.ToInt32(i["issuedate"].ToString());
+                    boook.IssueDate = DateTime.ParseExact(i["issuedate"].ToString(), "dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+                    boook.ReturnDate = DateTime.ParseExact(i["returndate"].ToString(), "dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
+
+                    books.Add(boook);
+
+                }
+                return books;
+            }
+        }
+
     }
 }

@@ -60,5 +60,11 @@ namespace LibrarySystemAPI.Controllers
             }
             return NotFound();
         }
+        [HttpGet("fine/{id}")]
+        public ActionResult<int> CalculateFine(int id)
+        {
+            int fine = userHandler.CalculateFine(id);
+            return Ok(fine);
+        }
     }
 }

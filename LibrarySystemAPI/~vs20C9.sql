@@ -218,4 +218,9 @@ where bookname=@bookname
 delete  from issuedlist where bookname=@bookname
 END
 
-
+---q11
+create procedure getissuedlist(@userid int)
+AS
+BEGIN
+select * from issuedlist where userid=@userid
+end

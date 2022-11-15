@@ -9,5 +9,6 @@ namespace LibrarySystemAPI.BusinessLayer
         public bool UpdateUser(int id, user user);
 
         public bool DeleteUser(int id);
+        public int CalculateFine(int id);
     }
 }

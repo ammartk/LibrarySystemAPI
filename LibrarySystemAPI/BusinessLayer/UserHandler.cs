@@ -1,4 +1,5 @@
 ﻿using SampleProject.DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WebApplication16.Models;
@@ -11,6 +12,29 @@ namespace LibrarySystemAPI.BusinessLayer
         public UserHandler(ISQLDataHelper sqldatahelper)
         {
             DatabaseHandler = sqldatahelper;
+        }
+
+        public int CalculateFine(int id)
+        {
+            List<issuebookclass> list = DatabaseHandler.IssuedLists(id);
+            int fine = 0;
+            foreach(issuebookclass issue in list)
+            {
+                if(issue.ReturnDate < DateTime.Now)
+                {
+                    DateTime value = issue.ReturnDate;
+                    
+                    while(value < DateTime.Now)
+                    {
+                        if(value.DayOfWeek != DayOfWeek.Sunday && value.DayOfWeek != DayOfWeek.Saturday)
+                        {
+                            fine++;
+                        }
+                        value.AddDays(1);
+                    }
+                }
+            }
+            return fine;
         }
 
         public bool DeleteUser(int id)

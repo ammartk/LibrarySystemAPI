@@ -24,5 +24,7 @@ namespace SampleProject.DataLayer
         public bool DeleteUser(int id);
         public bool DeleteBook(string name);
         public bool ReturnBook(string bookname);
+        public List<issuebookclass> IssuedLists(int id);
+
     }
 }
