@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using LibrarySystemAPI;
 using Microsoft.Extensions.Configuration;
 using SampleProject.Models;
 using WebApplication16.Models;
@@ -22,7 +23,7 @@ namespace SampleProject.DataLayer
         public book GetBook(string name)
         {
             connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
             {
                 SqlDataAdapter d = new SqlDataAdapter("fetchbook", con);
                 d.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -55,7 +56,7 @@ namespace SampleProject.DataLayer
         {
             List<Country> lstCountry = new List<Country>();
             connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("sp_GetCountries", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -83,7 +84,7 @@ namespace SampleProject.DataLayer
         {
             List<SpecialDay> lstSpecialDay = new List<SpecialDay>();
             connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
             {
                 SqlCommand cmd = new SqlCommand("sp_GetCountriesSpecialDays", con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -108,7 +109,7 @@ namespace SampleProject.DataLayer
         public bool InsertBook(book book)
         {
             connectionString = "server=CMDLHRLTH60\\SQLEXPRESS;database=mvc ; Integrated Security = true;";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection con = new SqlConnection(Constants.connectionString))
             {
                 if (book != null)
                 {
