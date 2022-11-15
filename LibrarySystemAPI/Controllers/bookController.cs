@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using WebApplication16.Models;
+
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Microsoft.AspNetCore.Mvc;
-using SampleProject.BusinessLayer;
+using LibrarySystemAPI.BusinessLayer;
+using LibrarySystemAPI.Models;
 
-namespace WebApplication16.Controllers
+namespace LibrarySystemAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -21,40 +22,6 @@ namespace WebApplication16.Controllers
         {
             bookHandler = handler;
         }
-        // GET api/values
-
-        //public List<book> Get()
-        //{
-        //    SqlDataAdapter d = new SqlDataAdapter("", con);
-        //    d.SelectCommand.CommandType = CommandType.StoredProcedure;
-        //    DataTable dt = new DataTable();
-        //    d.Fill(dt);
-        //    List<book> isbook = new List<book>();
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        for (int i = 0; i < dt.Rows.Count; i++)
-        //        {
-        //            book boook = new book();
-        //            boook.bookname = dt.Rows[i]["bookname"].ToString();
-        //            boook.bookid = Convert.ToInt32(dt.Rows[i]["bookid"].ToString());
-        //            boook.category = dt.Rows[i]["bookname"].ToString();
-        //            boook.shelf = Convert.ToInt32(dt.Rows[i]["bookname"].ToString());
-        //            boook.availibilty = Convert.ToInt32(dt.Rows[i]["bookname"].ToString());
-        //            isbook.Add(boook);
-        //        }
-        //    }
-        //    if (isbook.Count > 0)
-        //    {
-        //        return (isbook);
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        // GET api/values/5
-        //   question3
 
         [HttpGet("{name}")]
         public ActionResult<book> GetWithName(string name)

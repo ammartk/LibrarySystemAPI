@@ -1,3 +1,5 @@
+using LibrarySystemAPI.BusinessLayer;
+using LibrarySystemAPI.DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -5,8 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using SampleProject.BusinessLayer;
-using SampleProject.DataLayer;
 
 namespace SampleProject
 {
@@ -26,7 +26,6 @@ namespace SampleProject
             // In production, the Angular files will be served from this directory
             //services.Add(new ServiceDescriptor(typeof(ISQLDataHelper), typeof(SQLDataHelper), ServiceLifetime.Scoped));
             services.AddSingleton<ISQLDataHelper, SQLDataHelper>();
-            services.AddScoped<IPenaltyCalculator, PenaltyCalculator>();
             services.AddScoped<IBookHandler, BookHandler>();
             services.AddSwaggerGen(c =>
             {

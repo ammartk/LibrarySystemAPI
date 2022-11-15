@@ -1,10 +1,10 @@
-﻿using System;
+﻿using LibrarySystemAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApplication16.Models;
 
-namespace SampleProject.BusinessLayer
+namespace LibrarySystemAPI.BusinessLayer
 {
     public interface IBookHandler
     {

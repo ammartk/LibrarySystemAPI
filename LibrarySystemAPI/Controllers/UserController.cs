@@ -1,8 +1,7 @@
 ﻿using LibrarySystemAPI.BusinessLayer;
+using LibrarySystemAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using SampleProject.BusinessLayer;
 using System.Security.Policy;
-using WebApplication16.Models;
 
 namespace LibrarySystemAPI.Controllers
 {

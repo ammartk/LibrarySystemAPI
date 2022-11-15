@@ -1,8 +1,9 @@
-﻿using SampleProject.DataLayer;
+﻿
+using LibrarySystemAPI.DataLayer;
+using LibrarySystemAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebApplication16.Models;
 
 namespace LibrarySystemAPI.BusinessLayer
 {

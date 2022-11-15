@@ -1,10 +1,11 @@
 ﻿using System.Data.SqlClient;
 using System.Data;
-using WebApplication16.Models;
-using SampleProject.DataLayer;
-using System;
 
-namespace SampleProject.BusinessLayer
+using System;
+using LibrarySystemAPI.DataLayer;
+using LibrarySystemAPI.Models;
+
+namespace LibrarySystemAPI.BusinessLayer
 {
     public class BookHandler : IBookHandler
     {
