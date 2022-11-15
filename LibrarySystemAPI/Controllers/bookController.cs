@@ -16,7 +16,7 @@ namespace WebApplication16.Controllers
     [Route("[controller]")]
     public class bookController : Controller
     {
-       IBookHandler bookHandler;
+        IBookHandler bookHandler;
         public bookController(IBookHandler handler)
         {
             bookHandler = handler;
@@ -56,35 +56,19 @@ namespace WebApplication16.Controllers
         // GET api/values/5
         //   question3
 
-        // [Route("api/controller")]
-       // [System.Web.Http.HttpGet]
-        //[HttpGet,Route("{booknamee}")]
-        //public book Get(string booknamee)
-        //{
-        //    SqlDataAdapter d = new SqlDataAdapter("fetchbook", con);
-        //    d.SelectCommand.CommandType = CommandType.StoredProcedure;
-        //    d.SelectCommand.Parameters.AddWithValue("@bookname", booknamee);
-        //    DataTable dt = new DataTable();
-        //    d.Fill(dt);
-        //    book boook = new book();
-        //    if (dt.Rows.Count > 0)
-        //    {
-        //        boook.bookname = dt.Rows[0]["bookname"].ToString();
-        //        boook.bookid = Convert.ToInt32(dt.Rows[0]["bookid"].ToString());
-        //        boook.category = dt.Rows[0]["category"].ToString();
-        //        boook.shelf = Convert.ToInt32(dt.Rows[0]["shelf"].ToString());
-        //        boook.availibilty = Convert.ToInt32(dt.Rows[0]["availibilty"].ToString());
-        //    }
-        //    if (boook != null && boook.availibilty==-1)
-        //    {
-        //        // -1 means book is avaialable 
-        //        return boook;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
+        [HttpGet("{name}")]
+        public ActionResult<book> GetWithName(string booknamee)
+        {
+            var book = bookHandler.GetBook(booknamee);
+            if(book != null)
+            {
+                return Ok(book);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         [HttpPost]
         public ActionResult Post(book bookk)
         {

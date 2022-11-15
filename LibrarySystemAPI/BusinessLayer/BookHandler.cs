@@ -15,7 +15,7 @@ namespace SampleProject.BusinessLayer
 
         public book GetBook(string name)
         {
-            throw new System.NotImplementedException();
+            return DatabaseHandler.GetBook(name);
         }
 
         public bool InsertBook(book book)

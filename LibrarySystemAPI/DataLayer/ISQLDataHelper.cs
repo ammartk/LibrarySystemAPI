@@ -13,5 +13,6 @@ namespace SampleProject.DataLayer
         public List<SpecialDay> GetSpecialDaysData();
 
         public bool InsertBook(book book);
+        public book GetBook(string name);
     }
 }
