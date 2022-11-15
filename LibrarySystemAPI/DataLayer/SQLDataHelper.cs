@@ -392,10 +392,10 @@ namespace SampleProject.DataLayer
                 d.SelectCommand.Parameters.AddWithValue("@userid", id);
                 DataTable dt = new DataTable();
                 d.Fill(dt);
-                List<issuebookclass> books = new List<book>();
+                List<issuebookclass> books = new List<issuebookclass>();
                 foreach (DataRow i in dt.Rows)
                 {
-                    issuebookclass boook = new book();
+                    issuebookclass boook = new issuebookclass();
                     boook.Bookname = i["bookname"].ToString();
                     boook.UserId = Convert.ToInt32(i["issuedate"].ToString());
                     boook.IssueDate = DateTime.ParseExact(i["issuedate"].ToString(), "dd/MM/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture);
